@@ -1,0 +1,22 @@
+{
+  "name": "free-frequency-iwsdk",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Free Frequency en VR y realidad aumentada (Meta Quest) con Immersive Web SDK",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@iwsdk/core": "1.1.0-rc.2"
+  },
+  "devDependencies": {
+    "@iwsdk/vite-plugin-dev": "1.1.0-rc.2",
+    "vite": "^7.1.4"
+  },
+  "overrides": {
+    "three": "npm:super-three@0.185.0"
+  }
+}

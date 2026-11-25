@@ -1,0 +1,12 @@
+{
+  "name": "free-frequency",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "node serve.js",
+    "start": "node serve.js"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.1"
+  }
+}

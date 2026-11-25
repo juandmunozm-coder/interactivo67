@@ -1,0 +1,15 @@
+EMISORAS DE LA RADIO (versión de realidad mixta, carpeta iwsdk-interacciones)
+
+Cada carpeta es una emisora del dial. La lista de archivos de cada emisora está en
+iwsdk-interacciones/public/ff/emisoras.js (STATIONS). Para agregar o reemplazar un fragmento:
+  1. Copia el archivo (.wav o .mp3) en la carpeta de su emisora.
+  2. Agrega o cambia su nombre en la lista «files» de esa emisora en emisoras.js.
+Reglas: cada fragmento dura como máximo 12 segundos (si dura más, el programa lo corta a los 12 s).
+
+  noticias/  Locuciones INFORMATIVAS SIMULADAS (voz sintética de Windows, «Microsoft Sabina»).
+             NO son transmisiones de Noticias RCN ni de ninguna emisora real: el propio texto dice que son
+             simuladas. Si se obtienen fragmentos autorizados de Noticias RCN, pueden reemplazarse aquí.
+  terror/    Historias de fantasmas para niños, tono tranquilo (voz sintética «Microsoft Helena»).
+
+La emisora de música usa el audio que ya tenía el proyecto (assets/audio/radio-cancion.mp3):
+suena un tramo de 12 s, distinto cada vez que se sintoniza.

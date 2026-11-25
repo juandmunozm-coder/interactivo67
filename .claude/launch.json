@@ -1,0 +1,14 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    { "name": "free-frequency", "runtimeExecutable": "node", "runtimeArgs": ["serve.js"], "port": 5190, "autoPort": true },
+    { "name": "free-frequency-iwsdk", "runtimeExecutable": "node", "runtimeArgs": ["iwsdk/node_modules/vite/bin/vite.js", "iwsdk", "--port", "8082", "--strictPort", "--mode", "http"], "port": 8082 },
+    { "name": "free-frequency-interacciones", "runtimeExecutable": "node", "runtimeArgs": ["iwsdk/node_modules/vite/bin/vite.js", "iwsdk-interacciones", "--port", "8084", "--strictPort", "--mode", "http"], "port": 8084 },
+    { "name": "free-frequency-maqueta", "runtimeExecutable": "node", "runtimeArgs": ["iwsdk-maqueta/node_modules/vite/bin/vite.js", "iwsdk-maqueta", "--port", "8086", "--strictPort", "--mode", "http"], "port": 8086 },
+    { "name": "free-frequency-mateo", "runtimeExecutable": "node", "runtimeArgs": ["iwsdk-mateo/node_modules/vite/bin/vite.js", "iwsdk-mateo", "--port", "8088", "--strictPort", "--mode", "http"], "port": 8088 },
+    { "name": "free-frequency-mateo-audios", "runtimeExecutable": "node", "runtimeArgs": ["iwsdk-mateo-audios/node_modules/vite/bin/vite.js", "iwsdk-mateo-audios", "--port", "8090", "--strictPort", "--mode", "http"], "port": 8090 },
+    { "name": "free-frequency-mateo-modelos", "runtimeExecutable": "node", "runtimeArgs": ["iwsdk-mateo-modelos/node_modules/vite/bin/vite.js", "iwsdk-mateo-modelos", "--port", "8092", "--strictPort", "--mode", "http"], "port": 8092 },
+    { "name": "free-frequency-mateo-personajes", "runtimeExecutable": "node", "runtimeArgs": ["iwsdk-mateo-personajes/node_modules/vite/bin/vite.js", "iwsdk-mateo-personajes", "--port", "8094", "--strictPort", "--mode", "http"], "port": 8094 },
+    { "name": "free-frequency-mateo-final", "runtimeExecutable": "node", "runtimeArgs": ["iwsdk-mateo-final/node_modules/vite/bin/vite.js", "iwsdk-mateo-final", "--port", "8096", "--strictPort", "--mode", "http"], "port": 8096 }
+  ]
+}

@@ -1,0 +1,67 @@
+FREE FREQUENCY · VERSIÓN EN REALIDAD VIRTUAL (VR)
+=================================================
+
+CÓMO ABRIRLO
+------------
+Windows (no hay que instalar nada):
+  1. Descomprime el ZIP: clic derecho sobre el archivo > «Extraer todo…». (Si lo abres sin descomprimir, no funciona.)
+  2. Entra a la carpeta y haz doble clic en «Abrir Free Frequency VR.bat».
+  3. Se abre una ventana negra y el navegador con la experiencia. No cierres la ventana negra mientras la usas;
+     cuando termines, ciérrala.
+  · Si Windows muestra «Windows protegió su PC», haz clic en «Más información» > «Ejecutar de todas formas».
+    Es solo un servidor local: no instala nada ni se conecta a otros equipos.
+
+Mac o Linux:
+  Abre la Terminal en la carpeta descomprimida y escribe:   python3 -m http.server 5190
+  Luego abre en el navegador:   http://localhost:5190/vr/
+
+Si tienes Node.js instalado (cualquier sistema):   node serve.js   y abre la dirección que aparece, agregando /vr/
+
+Necesita internet la primera vez (descarga A-Frame y la tipografía Montserrat). Recomendado: Chrome o Edge.
+
+CONTROLES
+---------
+Computador:  arrastra con el ratón para mirar alrededor · clic para elegir · W A S D para moverte
+             rueda del ratón o teclas + / − para acercar o alejar (0 = normal)
+Gafas VR (Meta Quest u otras): botón «VR» abajo a la derecha · apunta con el control y aprieta el gatillo.
+             (Para usarlo en unas gafas hay que publicarlo en internet con HTTPS.)
+
+QUÉ ES
+------
+Es el prototipo de nuestra página interactiva Free Frequency llevada a realidad virtual. En lugar de mirar
+la experiencia en una pantalla plana, el usuario queda DENTRO del escenario 3D: puede mirar en todas las
+direcciones, los personajes le hablan de frente y él mismo sostiene y usa los objetos.
+
+Se hizo con A-Frame (https://aframe.io), una librería gratuita para crear realidad virtual en el navegador.
+Como la página ya estaba hecha con Three.js (la misma base de A-Frame), se reutilizaron directamente sus
+archivos: los textos (js/data.js), los personajes 3D con sus gestos (js/characters-3d.js), los escenarios
+de Blender (js/scenery.js), el toon shader, los sonidos y el sintonizador de la radio.
+
+RECORRIDO (igual que la página, y siguiendo el storyboard)
+---------------------------------------------------------
+1. Portada: «Free Frequency» y «Comenzar»; Mateo y Valeria saludan y señalan el botón.
+2. Elige una zona: Ruralidad — Cauca (Mateo) o Urbanidad — Cali (Valeria).
+3. Entrada de la zona: en el Cauca, Mateo se angustia porque no tiene señal; en Cali, simulación del sismo
+   (los edificios oscilan y Valeria se protege).
+4. Menú de la zona: una plataforma con los tres objetos (celular, radio y linterna).
+5. Recorrido de cada objeto en cuatro pasos: Objeto · Práctica · Personaje · Información.
+   - Práctica: el usuario sostiene el objeto y lo usa. Celular con pantalla táctil (SMS, modo avión,
+     llamadas breves, marcar 119, cambiar el tipo de red); radio que se enciende y se sintoniza;
+     linterna con código Morse y señal SOS (de noche).
+   - Personaje: Mateo o Valeria usan el objeto y explican.
+   - Información: cómo ayuda, qué conexión necesita y sus límites.
+6. Despedida y sección «Preparación» (antes, durante y después).
+
+RELACIÓN CON LA ACTIVIDAD (VR)
+------------------------------
+· Ambiente: escenarios 3D de la vereda del Cauca y de una calle de Cali, cielo y suelo en 360°.
+· Personajes 3D: Mateo y Valeria, que respiran, parpadean, miran al usuario, gesticulan al hablar,
+  se asustan en el sismo y saludan.
+· Interacciones: apuntar y hacer clic (o gatillo), sostener objetos, tocar la pantalla del celular,
+  girar el dial de la radio, mantener presionada la linterna.
+· Conceptos de la clase: presencia/inmersión (estás dentro del escenario), agencia (eliges zona, objeto
+  y qué hacer), cuerpo/avatar (los controles son tus manos), y se evitó mover al usuario para no causar
+  mareo (cinetosis).
+· Diferencia con AR: en VR todo el entorno es virtual; en AR los objetos se verían sobre el espacio real.
+
+Todo es una simulación educativa: no se envían mensajes, no se hacen llamadas y las emisoras no son reales.

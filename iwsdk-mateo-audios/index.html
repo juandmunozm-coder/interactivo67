@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Free Frequency · Realidad aumentada</title>
+  <meta name="theme-color" content="#14303a">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
+  <!-- la misma hoja de estilos de la página original (../css/styles.css): la portada se ve exactamente igual -->
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    html, body { margin: 0; height: 100%; overflow: hidden; background: #14303a; font-family: Montserrat, system-ui, sans-serif; }
+    #scene-container { position: fixed; inset: 0; }
+    #scene-container canvas { display: block; touch-action: none; }
+    /* PORTADA (igual a la de la página): cubre la vista 3D hasta tocar «Comenzar», que entra directo a la realidad aumentada */
+    #ff-landing { position: fixed; inset: 0; z-index: 10; overflow-x: hidden; overflow-y: auto; transition: opacity .5s; }
+    #ff-landing.out { opacity: 0; pointer-events: none; }
+    #ff-landing[hidden] { display: none !important; }
+    #ff-landing .topbar { position: absolute; }
+    #btn-start { border: 0; font-family: inherit; cursor: pointer; }
+    #btn-start[aria-busy="true"] { cursor: progress; opacity: .8; }
+    #btn-start[aria-busy="true"]:hover { transform: none; }
+    #ff-landing .home-msg { margin: 1rem auto 0; max-width: 46ch; font-size: .85rem; font-weight: 600; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,.55); }
+    #ff-landing .home-msg:empty { display: none; }
+    /* vista previa del computador (cuando el navegador no tiene realidad aumentada): volver a la portada */
+    #ff-back { position: fixed; right: 16px; bottom: 16px; z-index: 5; font: 700 15px Montserrat, system-ui, sans-serif; border: 0; border-radius: 999px; padding: 12px 20px;
+      cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,.25); color: #23251f; background: #f6ecd6; }
+    #ff-back[hidden] { display: none; }
+  </style>
+</head>
+<body data-view="home">
+  <div id="scene-container"></div>
+
+  <div id="ff-landing">
+    <header class="topbar" id="topbar">
+      <a class="brand" href="#" aria-label="Free Frequency">Free<i>Frequency</i></a>
+      <button type="button" class="lang-toggle" id="lang-toggle" aria-label="Change the language to English" lang="en">EN</button>
+      <button type="button" class="sound-toggle" id="sound-toggle" aria-pressed="true" aria-label="Sonido activado. Pulsa para silenciar"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="sp" d="M4 9v6h4l5 4V5L8 9H4z"/><path class="sw" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/><path class="sx" d="M16 9l5 6M21 9l-5 6"/></svg></button>
+    </header>
+    <main>
+      <section id="view-home" class="view" aria-labelledby="home-title">
+        <div class="home-glow" aria-hidden="true"></div>
+        <div class="rings" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+        <div class="home-copy">
+          <h1 id="home-title">Free <em>Frequency</em></h1>
+          <p class="home-phrase" data-i18n="phrase">Cuando la señal se apaga, la comunicación no.</p>
+          <button type="button" class="cta" id="btn-start" aria-busy="true" data-i18n="start">Comenzar</button>
+          <p class="home-msg" id="home-msg" role="status"></p>
+          <p class="home-note" data-i18n="note">Experiencia educativa: ninguna alternativa garantiza la comunicación. Combínalas y prepárate con tiempo.</p>
+        </div>
+        <!-- personajes: modelos 3D (../js/home-chars.js), dos lienzos que se insertan aquí -->
+        <div class="home-ground" aria-hidden="true"></div>
+      </section>
+    </main>
+  </div>
+
+  <button type="button" id="ff-back" hidden>← Inicio</button>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

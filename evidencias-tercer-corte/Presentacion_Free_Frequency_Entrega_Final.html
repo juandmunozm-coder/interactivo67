@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Frequency · Entrega final</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;1,600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root {
+  --teal: #14303A;
+  --teal-2: #1C3E49;
+  --cream: #F4EFE3;
+  --paper: #FBF8F1;
+  --ink: #23251F;
+  --soft: #55524A;
+  --light: #F6ECD6;
+  --light-soft: #C9D6D3;
+  --signal: #F5B335;
+  --moss: #2F5D3A;
+  --brick: #A8452F;
+  --line: #DDD3BB;
+}
+body { font-family: 'Montserrat', Arial, sans-serif; color: var(--ink); }
+section {
+  box-sizing: border-box;
+  padding: 128px 128px 160px;
+  background: var(--cream);
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  counter-increment: page;
+}
+section.dark { background: var(--teal); color: var(--light); }
+
+.eyebrow { font-size: 24px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: var(--moss); }
+section.dark .eyebrow { color: var(--signal); }
+h1 { font-size: 104px; font-weight: 800; line-height: 1.02; letter-spacing: -0.02em; color: var(--light); }
+h2 { font-size: 64px; font-weight: 800; line-height: 1.08; letter-spacing: -0.01em; color: var(--ink); }
+section.dark h2 { color: var(--light); }
+h3 { font-size: 30px; font-weight: 700; line-height: 1.2; color: var(--ink); }
+section.dark h3 { color: var(--light); }
+.lead { font-size: 30px; line-height: 1.45; color: var(--soft); }
+section.dark .lead { color: var(--light-soft); }
+.body { font-size: 26px; line-height: 1.45; color: var(--soft); }
+section.dark .body { color: var(--light-soft); }
+.accent { color: var(--signal); }
+.mono { font-family: 'JetBrains Mono', 'Courier New', monospace; }
+
+/* pie de página: una fila fija */
+.foot { position: absolute; left: 128px; bottom: 64px; width: 1664px; display: flex; justify-content: space-between; font-size: 24px; color: var(--soft); }
+section.dark .foot { color: var(--light-soft); }
+.foot p { font-size: 24px; }
+.pg::after { content: counter(page); }
+
+/* portada */
+section.cover { padding: 0; display: block; }
+.cover-img { position: absolute; left: 960px; top: 0; width: 960px; height: 1080px; object-fit: cover; }
+.cover-text { position: absolute; left: 128px; top: 128px; width: 760px; display: flex; flex-direction: column; gap: 32px; }
+.cover-meta { font-size: 26px; line-height: 1.5; color: var(--light-soft); }
+
+/* tablas */
+.tbl { font-size: 24px; color: var(--ink); width: 1664px; }
+section.dark .tbl { color: var(--light); }
+.tbl tr.head { background: #E9E1CC; }
+section.dark .tbl tr.head { background: var(--teal-2); }
+
+/* chips de estado */
+.chip-row { display: flex; gap: 16px; flex-wrap: wrap; }
+.chip { font-size: 24px; font-weight: 700; padding: 6px 18px; border-radius: 999px; }
+.chip.ok { background: #DCEEDD; color: #22552F; }
+.chip.warn { background: #FBE6BC; color: #6E4704; }
+.chip.miss { background: #F6D9CF; color: #8A3320; }
+
+/* galería de imágenes con pie */
+.gallery { display: flex; gap: 24px; }
+.shot { display: flex; flex-direction: column; gap: 12px; }
+.shot img { border-radius: 14px; object-fit: cover; background: var(--teal); }
+.shot .cap { font-size: 24px; line-height: 1.3; color: var(--soft); }
+section.dark .shot .cap { color: var(--light-soft); }
+.shot .tag { font-size: 24px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+.tag.before { color: var(--brick); }
+.tag.after { color: var(--moss); }
+section.dark .tag.before { color: #F09C83; }
+section.dark .tag.after { color: #8BD39B; }
+
+/* dos columnas */
+.split { display: flex; gap: 56px; align-items: flex-start; }
+.col { display: flex; flex-direction: column; gap: 20px; min-width: min-content; }
+
+/* cifras grandes */
+.stats { display: flex; gap: 24px; }
+.stat { flex: 1; background: var(--teal); border-radius: 18px; padding: 28px 32px; display: flex; flex-direction: column; gap: 8px; }
+.stat .n { font-size: 72px; font-weight: 800; line-height: 1; color: var(--signal); font-variant-numeric: tabular-nums; }
+.stat .l { font-size: 24px; line-height: 1.35; color: var(--light); }
+
+/* línea de versiones */
+.versions { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 40px; }
+.ver { display: flex; gap: 20px; align-items: flex-start; }
+.ver .v { font-size: 26px; font-weight: 800; color: var(--signal); width: 64px; }
+.ver p { font-size: 24px; line-height: 1.38; color: var(--light-soft); width: 700px; }
+.ver b { color: var(--light); }
+
+/* lista de pendientes */
+.todo { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 48px; }
+.todo-item { display: flex; gap: 18px; align-items: flex-start; }
+.todo-item .box { width: 26px; height: 26px; border: 3px solid var(--signal); border-radius: 6px; margin-top: 4px; }
+.todo-item p { font-size: 26px; line-height: 1.38; color: var(--light-soft); width: 740px; }
+.todo-item b { color: var(--light); }
+
+/* entrada suave */
+@keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+.enter { animation: rise 520ms ease-out both; }
+.d1 { animation-delay: 120ms; }
+.d2 { animation-delay: 240ms; }
+.d3 { animation-delay: 360ms; }
+
+/* visor: cada diapositiva mide 1920 × 1080 y se escala a la ventana */
+html, body { margin: 0; height: 100%; background: #0b1418; overflow: hidden; }
+#stage { position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px; transform-origin: 0 0; }
+#stage > section { position: absolute; inset: 0; width: 1920px; height: 1080px; display: none; overflow: hidden; }
+#stage > section.on { display: flex; }
+#stage > section.cover.on { display: block; }
+section aside { display: none; }
+#stage .pg::after { content: none; }
+body.notes section.on aside { display: block; position: absolute; left: 0; right: 0; bottom: 0; background: rgba(10,13,22,.92); color: #f6ecd6; font-size: 26px; line-height: 1.45; padding: 24px 128px; z-index: 5; }
+h1, h2, h3, p { margin: 0; }
+table { border-collapse: collapse; }
+th, td { text-align: left; padding: 0.35em 0.6em; border-bottom: 1px solid rgba(128,128,128,.35); vertical-align: top; }
+#hud { position: fixed; right: 16px; bottom: 12px; font: 600 13px Montserrat, Arial, sans-serif; color: #c9d6d3; opacity: .75; }
+</style>
+</head>
+<body>
+<div id="stage">
+<section id="cover" class="dark cover" data-transition="fade">
+<img class="cover-img" src="FreeFrequency_E03_maqueta_sobre_la_mesa_vista_del_usuario.png" alt="La maqueta del Cauca con Mateo, la radio y la linterna sobre la mesa">
+<div class="cover-text">
+<p class="eyebrow">Diseño Interactivo · UAO · tercer corte</p>
+<h1>Free <span class="accent">Frequency</span></h1>
+<p class="lead">Cuando la señal se apaga, la comunicación no. Realidad aumentada para Meta Quest 3: Mateo, una radio y una linterna sobre tu mesa.</p>
+<p class="cover-meta">Entrega final · los 8 elementos de la guía<br>Versión: iwsdk-mateo-final · IWSDK 1.1.0-rc.2</p>
+</div>
+<aside>Presentar el proyecto: en la zona rural del Cauca no hay señal, y Mateo nos pide ayuda. En realidad aumentada, el usuario coloca la maqueta sobre una mesa real y usa sus manos para encender una radio y enviar un SOS con una linterna. En esta presentación recorremos los 8 elementos de la guía de entrega.</aside>
+</section>
+<section id="resumen">
+<p class="eyebrow">Guía de entrega · tercer corte</p>
+<h2>Ocho elementos, cuatro bloques</h2>
+<table class="tbl">
+<tr class="head"><th style="width:40%">Elemento</th><th style="width:9%">Peso</th><th style="width:16%">Estado</th><th style="width:35%">Lo principal que falta</th></tr>
+<tr><td>01 · Interacciones creativas con las manos</td><td>15 %</td><td>Hecho</td><td>Bocetos sobre capturas del visor</td></tr>
+<tr><td>02 · Problema y proceso de desarrollo</td><td>15 %</td><td>Hecho</td><td>Fotos del equipo en tercera persona</td></tr>
+<tr><td>03 · Adaptación del proyecto a RA</td><td>10 %</td><td>Hecho</td><td>Boceto de color sobre la mesa real</td></tr>
+<tr><td>04 · RA frente a RV</td><td>10 %</td><td>Parcial</td><td>Diapositiva del continuo y escaneo</td></tr>
+<tr><td>05 · Sistemas de IWSDK</td><td>15 %</td><td>Hecho</td><td>Un clip en el visor por sistema</td></tr>
+<tr><td>06 · Optimización para Meta Quest 3</td><td>10 %</td><td>Falta evidencia</td><td>FPS en el visor y un antes y después</td></tr>
+<tr><td>07 · Análisis de confort</td><td>10 %</td><td>Parcial</td><td>Pruebas con personas externas</td></tr>
+<tr><td>08 · Calidad de assets y producto</td><td>15 %</td><td>Parcial</td><td>Blender, licencias y Drive</td></tr>
+</table>
+<div class="foot"><p>Free Frequency · Entrega final</p><p class="pg"></p></div>
+<aside>Resumen de dónde estamos frente a la rúbrica. Cinco elementos ya tienen el trabajo hecho en la app; lo que falta es sobre todo evidencia que solo sale del visor o del grupo: FPS, pruebas con personas, fotos y capturas de Blender.</aside>
+</section>
+<section id="e01-mapa">
+<p class="eyebrow">E01 · Interacciones creativas con las manos · 15 %</p>
+<h2>Mapa de interacciones, sin controles</h2>
+<table class="tbl">
+<tr class="head"><th style="width:25%">Gesto</th><th style="width:19%">Acción</th><th style="width:34%">Respuesta visual y sonora</th><th style="width:22%">Por qué</th></tr>
+<tr><td>Tocar el objeto con el índice (2,2 cm)</td><td>Elegir radio o linterna</td><td>El objeto salta, el otro desaparece · clic</td><td>Señalar es escoger</td></tr>
+<tr><td>Cerrar la mano sobre el objeto</td><td>Agarrarlo</td><td>Crece a tamaño real en 0,11 s · clic</td><td>Agarrar como algo físico</td></tr>
+<tr><td>Mano izquierda de lado, pulgar delante (propia)</td><td>Sostener la radio</td><td>La radio queda contra la palma y sigue la muñeca</td><td>Así se sostiene una radio portátil</td></tr>
+<tr><td>Pulgar e índice en la perilla, girar (propia)</td><td>Encender y sintonizar</td><td>La perilla gira con los dedos, la aguja se mueve · estática y emisoras</td><td>El mismo gesto de una radio real</td></tr>
+<tr><td>Puño cerrado y doblar el pulgar (propia)</td><td>Destellos y SOS en Morse</td><td>Haz de luz e indicadores · golpe al hundir, clic al soltar</td><td>El pulgar sobre el interruptor</td></tr>
+</table>
+<div class="foot"><p>Free Frequency · Entrega final</p><p class="pg"></p></div>
+<aside>Tres interacciones son propias del proyecto: sostener la radio de lado, girar sus perillas con la otra mano y enviar SOS doblando el pulgar. Además: los botones se tocan con el índice (se resaltan a 5 cm y se pulsan a 1,2 cm), la maqueta se mueve con las palmas hacia arriba y se agranda con las palmas enfrentadas, y el objeto se suelta abriendo la mano medio segundo. Cada acción tiene luz o resalte y sonido, porque las manos no vibran.</aside>
+</section>
+<section id="e01-img" class="dark">
+<p class="eyebrow">E01 · Interacciones creativas con las manos</p>
+<h2>Cada agarre sale de las 25 articulaciones XRHand</h2>
+<div class="gallery">
+<div class="shot enter"><img src="FreeFrequency_E01_agarre_radio_mano_izquierda_articulaciones_XRHand.png" alt="Radio en la mano izquierda con las articulaciones marcadas" style="width:398px;height:249px"><p class="cap">Radio contra la palma, pulgar delante</p></div>
+<div class="shot enter d1"><img src="FreeFrequency_E01_girar_perilla_con_la_mano_derecha.png" alt="Mano derecha girando la perilla" style="width:398px;height:249px"><p class="cap">La derecha gira la perilla</p></div>
+<div class="shot enter d2"><img src="FreeFrequency_E01_linterna_pulgar_presiona_luz_encendida.png" alt="El pulgar presiona y la linterna enciende" style="width:398px;height:249px"><p class="cap">Doblar el pulgar enciende la luz</p></div>
+<div class="shot enter d3"><img src="FreeFrequency_E01_mano_sin_mascara_solo_contorno_blanco.png" alt="Contorno blanco de la mano sobre la radio" style="width:398px;height:249px"><p class="cap">Manos solo con contorno blanco</p></div>
+</div>
+<p class="body">Si se pierde el seguimiento, la radio y la linterna se quedan quietas donde estaban (0 mm en la prueba) y vuelven a la mano en 0,35 s: no salen disparadas ni desaparecen.</p>
+<div class="foot"><p>Free Frequency · Entrega final</p><p class="pg"></p></div>
+<aside>Los puntos de colores son las articulaciones de XRHand con los colores de la figura del W3C: pulgar verde, índice azul, medio rojo, anular magenta y meñique amarillo. En el visor la mano real se ve con su contorno blanco, sin máscara de recorte. Archivos: public/ff/app.js (radioPose, torchFrame, torchFit, thumbBend) y src/main.js (manos).</aside>
+</section>
+<section id="e02-versiones" class="dark">
+<p class="eyebrow">E02 · Problema y proceso de desarrollo · 15 %</p>
+<h2>Ocho versiones: cada una resuelve lo que falló la anterior</h2>
+<div class="versions">
+<div class="ver"><p class="v">V1</p><p><b>Colocar en una mesa real.</b> Escaneo con planos y hit-test; pellizcar para colocar; botones con el índice.</p></div>
+<div class="ver"><p class="v">V5</p><p><b>Emisoras cortadas a 12 s.</b> Duración por emisora: noticia de 16 s e historia completa de 3 min 13 s.</p></div>
+<div class="ver"><p class="v">V2</p><p><b>Maqueta fija y lejos.</b> Moverla con las palmas hacia arriba y agrandarla con las palmas enfrentadas.</p></div>
+<div class="ver"><p class="v">V6</p><p><b>La mano real se cierra más que el objeto.</b> Modelos nuevos, radio contra la palma y linterna al centro del puño.</p></div>
+<div class="ver"><p class="v">V3</p><p><b>Tarjetas fuera de la maqueta.</b> Tarjetas a 4 cm de los objetos, objetos 2,5 veces más grandes y tres globos de Mateo.</p></div>
+<div class="ver"><p class="v">V7</p><p><b>Personajes con esqueleto.</b> El giro de cada articulación pasa a su hueso; Mateo conserva sus gestos.</p></div>
+<div class="ver"><p class="v">V4</p><p><b>La radio colgaba de la manija.</b> Agarre lateral con las 25 articulaciones XRHand y filtro adaptativo.</p></div>
+<div class="ver"><p class="v">V8</p><p><b>Máscara en las manos y linterna difícil.</b> Solo contorno blanco, encender doblando el pulgar y botón «Finalizar».</p></div>
+</div>
+<p class="body">Herramientas: VS Code, emulador IWER de IWSDK (npm run dev), Blender y capturas del visor.</p>
+<div class="foot"><p>Free Frequency · Entrega final</p><p class="pg"></p></div>
+<aside>Cada versión es una carpeta copia de la anterior, así la anterior queda intacta: iwsdk, iwsdk-interacciones, iwsdk-maqueta, iwsdk-mateo, iwsdk-mateo-audios, iwsdk-mateo-modelos, iwsdk-mateo-personajes e iwsdk-mateo-final. Se leen por columnas: V1 a V4 a la izquierda y V5 a V8 a la derecha. Falta contar cómo se repartió el trabajo en el grupo.</aside>
+</section>
+<section id="e02-antes">
+<p class="eyebrow">E02 · Problema y proceso de desarrollo</p>
+<h2>Antes y después de cada corrección</h2>
+<div class="gallery">
+<div class="shot"><p class="tag before">Antes · tarjeta lejos</p><img src="FreeFrequency_E02_v1_antes_tarjeta_lejos_fuera_de_la_maqueta.png" alt="Captura del visor: la tarjeta queda lejos, fuera de la maqueta" style="width:398px;height:224px"><p class="tag after">Después · cerca</p><img src="FreeFrequency_E07_tarjetas_dentro_de_la_maqueta_junto_a_los_objetos.png" alt="Tarjetas dentro de la maqueta junto a los objetos" style="width:398px;height:224px"></div>
+<div class="shot"><p class="tag before">Antes · radio al lado</p><img src="FreeFrequency_E02_v3_antes_radio_al_lado_de_la_mano.png" alt="Captura del visor: la radio queda al lado de la mano" style="width:398px;height:224px"><p class="tag after">Después · en la palma</p><img src="FreeFrequency_E01_agarre_radio_mano_izquierda_articulaciones_XRHand.png" alt="Radio contra la palma con el pulgar delante" style="width:398px;height:224px"></div>
+<div class="shot"><p class="tag before">Antes · sobre los dedos</p><img src="FreeFrequency_E02_v4_antes_linterna_encima_de_los_dedos.png" alt="Captura del visor: la linterna queda encima de los dedos" style="width:398px;height:224px"><p class="tag after">Después · en el puño</p><img src="FreeFrequency_E01_linterna_puno_cerrado_pulgar_estirado.png" alt="La linterna al centro del puño" style="width:398px;height:224px"></div>
+<div class="shot"><p class="tag before">Antes · máscara</p><img src="FreeFrequency_E02_v5_antes_mascara_de_recorte_en_las_manos.png" alt="Captura del visor con la máscara de recorte en las manos" style="width:398px;height:224px"><p class="tag after">Después · contorno</p><img src="FreeFrequency_E01_mano_sin_mascara_solo_contorno_blanco.png" alt="Solo el contorno blanco de la mano" style="width:398px;height:224px"></div>
+</div>
+<div class="foot"><p>Free Frequency · Entrega final</p><p class="pg"></p></div>
+<aside>Arriba, las capturas reales del visor con cada problema; abajo, la versión corregida. Las capturas «después» son de la vista previa del computador con manos simuladas: conviene repetirlas en el Quest para la entrega.</aside>
+</section>
+<section id="e02-refs" class="dark">
+<p class="eyebrow">E02 · Insumos del proceso</p>
+<h2>Bocetos, referencia técnica y video de prueba</h2>
+<div class="gallery">
+<div class="shot"><img src="FreeFrequency_E02_v3_referencia_agarre_radio_puntos_XRHand.png" alt="Boceto del agarre de la radio con puntos de las articulaciones" style="width:398px;height:300px;object-fit:contain"><p class="cap">Boceto: agarre de la radio</p></div>
+<div class="shot"><img src="FreeFrequency_E02_v4_referencia_agarre_linterna_puntos_XRHand.png" alt="Boceto del agarre de la linterna con puntos de las articulaciones" style="width:398px;height:300px;object-fit:contain"><p class="cap">Boceto: agarre de la linterna</p></div>
+<div class="shot"><img src="FreeFrequency_E02_referencia_articulaciones_XRHand_W3C.png" alt="Tabla y figura de las 25 articulaciones XRHand del W3C" style="width:398px;height:300px;object-fit:contain"><p class="cap">Las 25 articulaciones XRHand (W3C)</p></div>
+<div class="shot"><img src="FreeFrequency_E02_v5_referencia_video_puno_y_pulgar.png" alt="Cuadros del video: puño cerrado y pulgar que se dobla para encender" style="width:398px;height:300px;object-fit:contain"><p class="cap">Video: el pulgar se dobla para encender</p></div>
+</div>
+<p class="body">Los puntos numerados de los bocetos siguen los índices de XRHand: 0 muñeca, 1-4 pulgar, 5-9 índice, 10-14 medio, 15-19 anular y 20-24 meñique.</p>
+<div class="foot"><p>Free Frequency · Entrega final</p><p class="pg"></p></div>
+<aside>Estos insumos guiaron el código del agarre: los bocetos sobre fotos reales, la tabla del W3C para no confundir las articulaciones, y el video de prueba con el puño cerrado y el pulgar estirado sobre la linterna, que al doblarse enciende la luz.</aside>
+</section>
+<section id="e03">
+<p class="eyebrow">E03 · Adaptación del proyecto a RA · 10 %</p>
+<h2>La mesa real se vuelve el suelo de la historia</h2>
+<div class="split">
+<div class="shot"><img src="FreeFrequency_E03_web_frente_a_realidad_aumentada.png" alt="Lado a lado: menú de la zona en la web y la maqueta en realidad aumentada" style="width:1040px;height:384px;object-fit:contain"><p class="cap">Segundo corte (web) frente al tercero (maqueta sobre la mesa)</p></div>
+<div class="col" style="width:568px">
+<h3>Qué cambió</h3>
+<p class="body">Escenario en pantalla → maqueta de 71 × 73 cm sobre la mesa escaneada.</p>
+<p class="body">Clic del ratón → tocar con el índice y agarrar a tamaño real (radio 24 cm, linterna 19 cm).</p>
+<p class="body">Se quitó el teléfono y la zona urbana; se agregó mover y agrandar la maqueta.</p>
+<p class="body"><b>Superficie:</b> una mesa horizontal; huella de unos 120 × 92 cm.</p>
+</div>
+</div>
+<div class="foot"><p>Free Frequency · Entrega final</p><p class="pg"></p></div>
+<aside>Adaptar no fue meter la escena web en el visor: el usuario escanea su mesa, coloca la maqueta con un pellizco y se mueve alrededor de ella. Los objetos crecen a tamaño real al agarrarlos. Las tarjetas quedan de pie sobre el pasto, junto a los objetos. Si no se detecta ninguna mesa, un pellizco coloca una mesa virtual 55 cm delante. Falta un boceto con código de color sobre una foto de la mesa real.</aside>
+</section>
+<section id="e04" class="dark">
+<p class="eyebrow">E04 · RA frente a RV · 10 %</p>
+<h2>Es realidad aumentada, no virtual</h2>
+<div class="split">
+<table class="tbl" style="width:980px">
+<tr class="head"><th style="width:32%">Concepto</th><th style="width:68%">Dónde aparece en Free Frequency</th></tr>
+<tr><td>Continuo</td><td>Cerca del extremo real: solo la maqueta y los objetos son virtuales</td></tr>
+<tr><td>RA fuerte</td><td>Registrada a la mesa real y a las manos reales</td></tr>
+<tr><td>Aumento y mediación</td><td>Passthrough de video del Quest 3</td></tr>
+<tr><td>Seguimiento y registro</td><td>Cabeza 6 DoF, manos con 25 articulaciones, local-floor</td></tr>
+<tr><td>Detección de planos</td><td>Cuadrícula amarilla en mesas y azul en el piso</td></tr>
+</table>
+<div class="shot"><img src="FreeFrequency_E04_codigo_modo_realidad_aumentada.png" alt="Código de World.create con SessionMode.ImmersiveAR" style="width:628px;height:300px;object-fit:contain"><p class="cap">SessionMode.ImmersiveAR en src/main.js</p></div>
+</div>
+<p class="body">En RV no habría mesa real: haría falta un entorno completo y se perdería la referencia del propio espacio.</p>
+<div class="foot"><p>Free Frequency · Entrega final</p><p class="pg"></p></div>
+<aside>El proyecto configura IWSDK en src/main.js con World.create y SessionMode.ImmersiveAR; no hay archivo iwsdk.config.json, así que esta captura del código es el equivalente de "mode": "ar". Campo de visión: todo cabe en la mesa delante del usuario. Falta la captura del escaneo en el visor y una diapositiva del continuo.</aside>
+</section>
+<section id="e05">
+<p class="eyebrow">E05 · Sistemas de IWSDK · 15 %</p>
+<h2>Qué sistemas usa la app y por qué</h2>
+<table class="tbl">
+<tr class="head"><th style="width:22%">Sistema</th><th style="width:10%">Uso</th><th style="width:44%">Para qué</th><th style="width:24%">Archivo</th></tr>
+<tr><td>Scene Understanding</td><td>Sí</td><td>Detecta la mesa y dibuja la cuadrícula del escaneo</td><td>src/main.js</td></tr>
+<tr><td>Environment Raycast</td><td>Sí</td><td>Anillo amarillo sobre cualquier superficie</td><td>src/main.js</td></tr>
+<tr><td>Built-in Interactions</td><td>Sí</td><td>Pellizco a distancia y toque con el índice</td><td>src/shim.js</td></tr>
+<tr><td>Hand tracking</td><td>Sí</td><td>25 articulaciones para elegir, agarrar y encender</td><td>public/ff/app.js</td></tr>
+<tr><td>Grabbing</td><td>No</td><td>Agarre propio: pulgar en el frente y en el botón</td><td>public/ff/app.js</td></tr>
+<tr><td>Physics (Havok)</td><td>No</td><td>Nada cae ni rebota</td><td>—</td></tr>
+<tr><td>Spatial UI (UIKitML)</td><td>No</td><td>Tarjetas en canvas con Montserrat, tildes y «¡»</td><td>public/ff/ui.js</td></tr>
+<tr><td>Depth Occlusion</td><td>No</td><td>Las manos se ven solo como contorno</td><td>src/main.js</td></tr>
+<tr><td>Camera Access</td><td>No</td><td>No hace falta leer la cámara</td><td>—</td></tr>
+</table>
+<div class="foot"><p>Free Frequency · Entrega final</p><p class="pg"></p></div>
+<aside>La configuración está en World.create: features con sceneUnderstanding y environmentRaycast activos; grabbing, physics y spatialUI desactivados. RayInteractable y PokeInteractable se añaden en src/shim.js. Falta un clip corto en el visor por cada sistema usado.</aside>
+</section>
+<section id="e06-assets">
+<p class="eyebrow">E06 · Optimización para Meta Quest 3 · 10 %</p>
+<h2>Tabla de assets, medida en los archivos</h2>
+<table class="tbl">
+<tr class="head"><th style="width:30%">Asset</th><th style="width:16%">Triángulos</th><th style="width:12%">Peso</th><th style="width:26%">Texturas</th><th style="width:16%">Formato</th></tr>
+<tr><td>Radio.glb</td><td>49 743</td><td>1,52 MB</td><td>512 × 512, 560 × 256</td><td>GLB + PNG</td></tr>
+<tr><td>Linterna.glb</td><td>27 832</td><td>0,68 MB</td><td>512 × 512</td><td>GLB + PNG</td></tr>
+<tr><td>Mateo (chico.glb)</td><td>119 786</td><td>5,22 MB</td><td>14 × 1024 × 1024</td><td>GLB + JPG</td></tr>
+<tr><td>Valeria (solo portada)</td><td>95 328</td><td>3,86 MB</td><td>9 × 1024 × 1024</td><td>GLB + JPG</td></tr>
+<tr><td>Escenario del Cauca</td><td>173 090</td><td>7,02 MB</td><td>1024 y 256 px</td><td>GLB + JPG/PNG</td></tr>
+<tr><td>Canción de la radio</td><td>—</td><td>11,14 MB</td><td>—</td><td>MP3</td></tr>
+<tr><td>Historia de terror</td><td>—</td><td>2,95 MB</td><td>—</td><td>MP3</td></tr>
+</table>
+<p class="body">Peso de dist (npm run build): 57 MB, de los cuales 28 MB son modelos y audios y 13,6 MB son JavaScript.</p>
+<div class="foot"><p>Free Frequency · Entrega final</p><p class="pg"></p></div>
+<aside>Triángulos, pesos y texturas se midieron directamente en cada archivo .glb. El dist es el de iwsdk-mateo-final. Del JavaScript, 6,4 MB son el sistema de luces de IWSDK y hay fuentes que solo se descargan si se usan.</aside>
+</section>
+<section id="e06-cifras" class="dark">
+<p class="eyebrow">E06 · Optimización para Meta Quest 3</p>
+<h2>Dónde está el peso y qué se puede bajar</h2>
+<div class="stats">
+<div class="stat enter" style="background:#1C3E49"><p class="n">57 MB</p><p class="l">peso de dist</p></div>
+<div class="stat enter d1" style="background:#1C3E49"><p class="n">297</p><p class="l">llamadas de dibujo por ojo</p></div>
+<div class="stat enter d2" style="background:#1C3E49"><p class="n">376 245</p><p class="l">triángulos por ojo</p></div>
+<div class="stat enter d3" style="background:#1C3E49"><p class="n">≈ 9 MB</p><p class="l">que esta versión no usa</p></div>
+</div>
+<div class="split">
+<div class="shot"><img src="FreeFrequency_E06_panel_de_rendimiento_llamadas_de_dibujo_y_triangulos.png" alt="Panel con llamadas de dibujo y triángulos sobre la escena" style="width:600px;height:338px"><p class="cap">Medido en el computador, un ojo</p></div>
+<div class="col" style="width:968px">
+<h3>Propuestas, con su ahorro</h3>
+<p class="body">Quitar de dist los personajes anteriores (4,0 MB), las locuciones .wav reemplazadas (3,2 MB) y Havok (2,0 MB).</p>
+<p class="body">Recortar la canción a los fragmentos que suenan (hoy 11,1 MB).</p>
+<p class="body">Bajar triángulos de Mateo y del escenario en Blender y pasar texturas a KTX 2.0.</p>
+</div>
+</div>
+<div class="foot"><p>Free Frequency · Entrega final</p><p class="pg"></p></div>
+<aside>En el Quest 3 cada fotograma se dibuja dos veces: unas 594 llamadas y 752 000 triángulos, con un presupuesto de 13,9 ms a 72 Hz. Falta medir los FPS en el visor (por ejemplo con OVR Metrics Tool), aplicar al menos una optimización con antes y después, y medir el tiempo de carga desde la URL de GitHub Pages.</aside>
+</section>
+<section id="e07">
+<p class="eyebrow">E07 · Análisis de confort · 10 %</p>
+<h2>Cada decisión con su valor</h2>
+<div class="split">
+<table class="tbl" style="width:1100px">
+<tr class="head"><th style="width:38%">Decisión</th><th style="width:30%">Valor</th><th style="width:32%">Razón</th></tr>
+<tr><td>Tarjetas junto a los objetos</td><td>4 cm, giradas 20°</td><td>Se leen sin girar la cabeza</td></tr>
+<tr><td>Ancho de las tarjetas</td><td>30 y 20 cm, fijo</td><td>El texto no crece ni se aleja</td></tr>
+<tr><td>Alto de los botones</td><td>≈ 31 mm</td><td>Mayor que 22 mm</td></tr>
+<tr><td>Separación de botones</td><td>≈ 7 mm</td><td>Subir a 12 mm</td></tr>
+<tr><td>Toque de botones</td><td>5 cm resalta, 1,2 cm pulsa</td><td>Un toque, un clic</td></tr>
+<tr><td>Globos de Mateo</td><td>5 s y 7 s</td><td>Tiempo de lectura</td></tr>
+<tr><td>Soltar la radio</td><td>Mano extendida 0,5 s</td><td>No se suelta sin querer</td></tr>
+</table>
+<div class="shot"><img src="FreeFrequency_E07_tarjetas_dentro_de_la_maqueta_junto_a_los_objetos.png" alt="Tarjetas de pie dentro de la maqueta junto a la radio y la linterna" style="width:508px;height:318px"><p class="cap">Todo a la altura de la mesa: brazos cerca del cuerpo</p></div>
+</div>
+<div class="foot"><p>Free Frequency · Entrega final</p><p class="pg"></p></div>
+<aside>Postura prevista: de pie o sentado frente a una mesa. Duración estimada: entre 8 y 12 minutos; confirmarla cronometrando una prueba. La separación entre botones (7 mm) está por debajo de los 12 mm de referencia: conviene aumentarla. Falta: pruebas con personas externas al equipo y una foto en tercera persona.</aside>
+</section>
+<section id="e08-visual" class="dark">
+<p class="eyebrow">E08 · Calidad de assets y del producto · 15 %</p>
+<h2>Un solo sistema visual, de la web al visor</h2>
+<div class="gallery">
+<div class="shot"><img src="FreeFrequency_E08_sistema_visual_paleta_tipografia_botones.png" alt="Sistema visual: paleta, tipografía Montserrat, botones e iconos" style="width:820px;height:470px;object-fit:contain"><p class="cap">Paleta, Montserrat, estados de los botones e iconos</p></div>
+<div class="shot"><img src="FreeFrequency_E08_modelos_radio_linterna_Mateo_Valeria.png" alt="Los cuatro modelos 3D: radio, linterna, Mateo y Valeria" style="width:820px;height:470px;object-fit:contain"><p class="cap">Modelos 3D propios con sus materiales originales</p></div>
+</div>
+<p class="body">Las tarjetas usan la misma tipografía y los mismos colores de la página web, con tildes y «¡» completos.</p>
+<div class="foot"><p>Free Frequency · Entrega final</p><p class="pg"></p></div>
+<aside>Paleta: azul petróleo, amarillo de la señal, crema, musgo y ladrillo, la misma de la página web. Las tarjetas se dibujan en canvas con Montserrat, así no se pierden las tildes ni el signo «¡», que la fuente por defecto de los paneles no trae. Falta: capturas de cada modelo en Blender junto a su versión en el visor.</aside>
+</section>
+<section id="e08-flujo">
+<p class="eyebrow">E08 · Calidad de assets y del producto</p>
+<h2>Flujo completo, de la portada al cierre</h2>
+<div class="gallery">
+<div class="shot enter"><img src="FreeFrequency_E08_portada_Mateo_y_Valeria.png" alt="Portada con Mateo y Valeria saludando" style="width:398px;height:249px"><p class="cap">1 · Portada y «Comenzar»</p></div>
+<div class="shot enter d1"><img src="FreeFrequency_E01_Mateo_pregunta_cual_alternativa.png" alt="Mateo pregunta cuál alternativa le ayuda" style="width:398px;height:249px"><p class="cap">2 · Mateo pide ayuda</p></div>
+<div class="shot enter d2"><img src="FreeFrequency_E08_linterna_SOS_completado_boton_Finalizar.png" alt="Tarjeta con SOS completado y el botón Finalizar" style="width:398px;height:249px"><p class="cap">3 · Práctica y «Finalizar»</p></div>
+<div class="shot enter d3"><img src="FreeFrequency_E08_cierre_Mateo_solo_con_su_globo.png" alt="Cierre: Mateo solo con su globo de agradecimiento" style="width:398px;height:249px"><p class="cap">4 · Mateo agradece</p></div>
+</div>
+<table class="tbl">
+<tr class="head"><th style="width:40%">Asset</th><th style="width:28%">Origen</th><th style="width:32%">Licencia</th></tr>
+<tr><td>Radio, linterna, personajes y escenario</td><td>Modelos del grupo</td><td>Propios: indicar autores</td></tr>
+<tr><td>IWSDK y Three.js</td><td>Meta y comunidad</td><td>MIT</td></tr>
+<tr><td>«Si tu amor no vuelve»</td><td>Grabación comercial</td><td>Con derechos: pedir permiso</td></tr>
+</table>
+<div class="foot"><p>Free Frequency · Entrega final</p><p class="pg"></p></div>
+<aside>Recorrido: portada, escaneo de la mesa, Mateo se presenta en tres globos, el usuario toca la radio o la linterna, practica con las manos, pulsa Finalizar y Mateo queda solo con su globo de agradecimiento. En las pruebas la consola no mostró errores. Montserrat tiene licencia SIL Open Font. La canción tiene derechos: pedir permiso o cambiarla antes de publicar.</aside>
+</section>
+<section id="pendientes" class="dark">
+<p class="eyebrow">Antes de entregar</p>
+<h2>Lo que falta por preparar</h2>
+<div class="todo">
+<div class="todo-item"><div class="box"></div><p><b>E01</b> · Bocetos sobre capturas del visor y demo de cada interacción.</p></div>
+<div class="todo-item"><div class="box"></div><p><b>E06</b> · FPS medidos en el visor y un antes y después con cifras.</p></div>
+<div class="todo-item"><div class="box"></div><p><b>E02</b> · Fotos del equipo en tercera persona y cómo se repartió el trabajo.</p></div>
+<div class="todo-item"><div class="box"></div><p><b>E06</b> · Tiempo de carga desde la URL de GitHub Pages.</p></div>
+<div class="todo-item"><div class="box"></div><p><b>E03</b> · Boceto con código de color sobre una foto de la mesa real.</p></div>
+<div class="todo-item"><div class="box"></div><p><b>E07</b> · Pruebas con personas externas y foto de postura.</p></div>
+<div class="todo-item"><div class="box"></div><p><b>E04</b> · Diapositiva del continuo y captura del escaneo en el visor.</p></div>
+<div class="todo-item"><div class="box"></div><p><b>E08</b> · Capturas en Blender, licencia de la canción y archivos en Drive.</p></div>
+<div class="todo-item"><div class="box"></div><p><b>E05</b> · Un clip en el visor por cada sistema usado.</p></div>
+<div class="todo-item"><div class="box"></div><p><b>Todo</b> · Revisar ortografía: −0,1 por cada error.</p></div>
+</div>
+<div class="foot"><p>Free Frequency · Entrega final</p><p class="pg"></p></div>
+<aside>Lista de lo que la app no puede generar sola: evidencia del visor, del grupo y de las pruebas. Las imágenes de referencia están en la carpeta evidencias-tercer-corte del proyecto, con el nombre que pide la guía; hay que cambiar el prefijo FreeFrequency por el nombre del grupo.</aside>
+</section>
+</div>
+<div id="hud">← → para avanzar · N notas · F pantalla completa</div>
+<script>
+(function () {
+  var st = document.getElementById('stage'), all = [].slice.call(st.children), i = 0;
+  function fit() { var s = Math.min(innerWidth / 1920, innerHeight / 1080); st.style.transform = 'scale(' + s + ') translate(-50%, -50%)'; }
+  function show(n) { i = Math.max(0, Math.min(all.length - 1, n)); all.forEach(function (s, k) { s.classList.toggle('on', k === i); }); history.replaceState(null, '', '#' + (i + 1)); }
+  addEventListener('resize', fit);
+  addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') show(i + 1);
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') show(i - 1);
+    else if (e.key === 'Home') show(0); else if (e.key === 'End') show(all.length - 1);
+    else if (e.key === 'n' || e.key === 'N') document.body.classList.toggle('notes');
+    else if (e.key === 'f' || e.key === 'F') { if (!document.fullscreenElement) document.documentElement.requestFullscreen(); else document.exitFullscreen(); }
+  });
+  addEventListener('click', function (e) { show(e.clientX > innerWidth / 2 ? i + 1 : i - 1); });
+  /* número de página: las diapositivas ocultas no cuentan para el contador de CSS, así que se escribe aquí */
+  all.forEach(function (s, k) { var pg = s.querySelector('.pg'); if (pg) pg.textContent = String(k + 1); });
+  addEventListener('hashchange', function () { show((parseInt(location.hash.slice(1), 10) || 1) - 1); });
+  fit(); show((parseInt(location.hash.slice(1), 10) || 1) - 1);
+})();
+</script>
+</body>
+</html>
